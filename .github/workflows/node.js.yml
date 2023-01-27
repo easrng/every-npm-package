@@ -27,4 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: node gen.js && cd generated && cat package.json && npm i
+    - run: node gen.js && cd generated && echo installing && npx pnpm i
