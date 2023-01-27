@@ -30,4 +30,4 @@ jobs:
       with:
         version: ^7.26.1
     - run: npm ci
-    - run: node gen.js && cd generated && echo installing && pnpm i
+    - run: node gen.js
