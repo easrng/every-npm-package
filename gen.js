@@ -1,19 +1,8 @@
-const package = {
-  name: "generated",
-  version: "1.0.0",
-  description: "",
-  main: "index.js",
-  scripts: {
-    test: 'echo "Error: no test specified" && exit 1',
-  },
-  author: "",
-  license: "UNLICENSED",
-};
-package.dependencies = Object.fromEntries(
-  require("all-the-package-names").map((e) => [e, "*"])
-);
-const fs = require("fs");
-if (!fs.existsSync("generated")) {
-  fs.mkdirSync("generated");
+const allThePackageNames = require("all-the-package-names")
+const pnpm = require('path').dirname(require.resolve("pnpm"))+"/dist/pnpm.cjs"
+const exec = require('util').promisify(require('child_process').execFile)
+let i = 0;
+for(let pkg of allThePackageNames) {
+  console.log("installing package",++i,"of",allThePackageNames.length)
+  await exec(pnpm, ['install',pkg])
 }
-fs.writeFileSync("generated/package.json", JSON.stringify(package));
