@@ -27,5 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Setup pnpm
       uses: pnpm/action-setup@v2.2.4
+      with:
+        version: ^7.26.1
     - run: npm ci
     - run: node gen.js && cd generated && echo installing && pnpm i
