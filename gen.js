@@ -4,6 +4,6 @@ let i = 0;
 (async()=>{
 for(let pkg of allThePackageNames) {
   console.log("installing package",++i,"of",allThePackageNames.length)
-  await exec("pnpm", ['install','--', pkg])
+  try{await exec("pnpm", ['install','--', pkg])}catch(e){console.warn("failed to install package",i,"of",allThePackageNames.length);}
 }
 })()
